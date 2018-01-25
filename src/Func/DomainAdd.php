@@ -35,4 +35,22 @@ class DomainAdd extends AbstractFunc
      * @var array
      */
     protected $additional = [];
+
+    /**
+     * @param array $additional
+     *
+     * @return AbstractFunc
+     */
+    public function setAdditional(array $additional): AbstractFunc
+    {
+        if (empty($this->additional)) {
+            if (isset($additional['ns'])) {
+                $additional['ns'] = \str_replace(' ', '+', $additional['ns']);
+            }
+            $this->additional = $additional;
+            return $this;
+        }
+        $this->additional = \array_merge($this->additional, $additional);
+        return $this;
+    }
 }

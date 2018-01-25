@@ -32,7 +32,7 @@ $addDomain = new \IspApi\Func\DomainAdd();
 $addDomain->setAdditional([
     'name'    => 'domain.ru',
     'ip'      => '127.0.0.1',
-    'ns'      => 'dns3.domain.net.+dns1.domain.net.+dns2.domain.net.',
+    'ns'      => 'dns3.domain.net. dns1.domain.net. dns2.domain.net.',
     'ns_list' => '',
     'mx'      => 'mail',
     'mx_list' => '',
@@ -48,7 +48,7 @@ $listEntriesByDomain = new \IspApi\Func\DomainSublist('domain.ru');
 
 ###### Подготовка к удалению выбранной записи домена
 ```php
-$deleteDomainEntry = new \IspApi\Func\DomainDeleteItem('test+A++127.0.0.1', 'domain.ru');
+$deleteDomainEntry = new \IspApi\Func\DomainDeleteItem('test A  127.0.0.1', 'domain.ru');
 ```
 
 ###### Подготовка к добавлению записи в домен 

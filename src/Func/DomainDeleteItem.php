@@ -17,4 +17,10 @@ class DomainDeleteItem extends AbstractFunc
      * @var bool
      */
     protected $isSaveAction = true;
+
+    public function __construct(string $elid = '', string $plid = '')
+    {
+        $elid = \str_replace(' ', '+', $elid);
+        parent::__construct($elid, $plid);
+    }
 }
