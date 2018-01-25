@@ -3,15 +3,15 @@
 namespace IspApi\Func;
 
 /**
- * Class DomainDeleteItem
+ * Class DomainAddItem
  * @package IspApi\Func
  */
-class DomainDeleteItem extends AbstractFunc
+class DomainAddItem extends AbstractFunc
 {
     /**
      * @var string
      */
-    protected $func = 'domain.sublist.delete';
+    protected $func = 'domain.sublist.edit';
 
     /**
      * @var bool

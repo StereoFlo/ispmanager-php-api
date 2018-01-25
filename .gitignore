@@ -1,2 +1,4 @@
 vendor
 isp.php
+.idea/
+composer.phar

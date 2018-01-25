@@ -37,6 +37,9 @@ class ispManager
      */
     private $url;
 
+    /**
+     * @var array
+     */
     private $urlParts = [];
 
     /**
@@ -95,20 +98,6 @@ class ispManager
     }
 
     /**
-     * @return self
-     */
-    public function buildUrl(): self
-    {
-        $this->url = $this->server->getSchema() . '://' . $this->server->getHost();
-        $this->prepareUrlPort();
-        $this->prepareUrlUser();
-        $this->prepareUrlFormat();
-        $this->prepareUrlFunc();
-        $this->url .= http_build_query($this->urlParts);
-        return $this;
-    }
-
-    /**
      * @return string
      * @throws \Exception
      */
@@ -122,18 +111,25 @@ class ispManager
             while ($data = \fread($connection, 4096)) {
                 $response .= $data;
             }
-            if (!empty($response)) {
-                $response = \json_decode($response, true);
-            }
-            $response = \json_encode([
-                'success' => true,
-                'data' => $response,
-            ]);
-            \fclose($connection);
+                \fclose($connection);
         } catch (\Exception $exception) {
             $response = \json_encode(['success' => false, 'message' => 'something went wrong']);
         }
         return $response;
+    }
+
+    /**
+     * @return self
+     */
+    private function buildUrl(): self
+    {
+        $this->url = $this->server->getSchema() . '://' . $this->server->getHost();
+        $this->prepareUrlPort();
+        $this->prepareUrlUser();
+        $this->prepareUrlFormat();
+        $this->prepareUrlFunc();
+        $this->url .= \http_build_query($this->urlParts);
+        return $this;
     }
 
     /**
@@ -187,6 +183,7 @@ class ispManager
      */
     private function prepareParams(): array
     {
+        $this->buildUrl();
         if ($this->func->isSaveAction()) {
             if (!empty($this->func->getAdditional())) {
                 $this->urlParts = array_merge($this->urlParts, $this->func->getAdditional());

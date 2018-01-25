@@ -57,7 +57,7 @@ class AbstractFunc implements FuncInterface
         if ($elid) {
             $this->elid = $elid;
         }
-        if ($this->plid) {
+        if ($plid) {
             $this->plid = $plid;
         }
     }
