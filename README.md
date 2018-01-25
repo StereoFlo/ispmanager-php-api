@@ -6,6 +6,8 @@
 
 
 ```php
+include 'vendor/autoload.php';
+
 $server = new \IspApi\Server\Server('server.com', 1500);
 $credentials = new \IspApi\User\User('user', 'password');
 $getDomainList = new \IspApi\Func\Domain();
