@@ -1,0 +1,17 @@
+{
+    "name": "stereoflo/ispapi",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "StereoFlo",
+            "email": "stereoflo@stereoflo.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "IspApi\\": "src/"
+        }
+    }
+}
