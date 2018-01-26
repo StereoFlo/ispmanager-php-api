@@ -9,7 +9,7 @@
 include 'vendor/autoload.php';
 
 $server = new \IspApi\Server\Server('server', 1500);
-$credentials = new \IspApi\User\User('user', 'password');
+$credentials = new \IspApi\Credentials\Credentials('user', 'password');
 
 ```
 

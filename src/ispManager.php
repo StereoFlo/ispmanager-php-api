@@ -4,7 +4,7 @@ namespace IspApi;
 
 use IspApi\Func\FuncInterface;
 use IspApi\Server\ServerInterface;
-use IspApi\User\UserInterface;
+use IspApi\Credentials\CredentialsInterface;
 
 /**
  * Class ispManager
@@ -18,7 +18,7 @@ class ispManager
     private $server;
 
     /**
-     * @var UserInterface
+     * @var CredentialsInterface
      */
     private $user;
 
@@ -58,10 +58,10 @@ class ispManager
     }
 
     /**
-     * @param UserInterface $user
+     * @param CredentialsInterface $user
      * @return ispManager
      */
-    public function setUser(UserInterface $user): self
+    public function setUser(CredentialsInterface $user): self
     {
         $this->user = $user;
         return $this;

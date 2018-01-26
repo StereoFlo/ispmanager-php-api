@@ -1,12 +1,12 @@
 <?php
 
-namespace IspApi\User;
+namespace IspApi\Credentials;
 
 /**
  * Class User
  * @package IspApi\User
  */
-class User implements UserInterface
+class Credentials implements CredentialsInterface
 {
     /**
      * @var string
