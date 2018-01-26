@@ -43,7 +43,6 @@ class DomainAdd extends AbstractFunc
      */
     public function setAdditional(array $additional): AbstractFunc
     {
-
         if (isset($additional['ns'])) {
             $additional['ns'] = \str_replace(' ', '+', $additional['ns']);
         }
