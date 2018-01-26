@@ -6,7 +6,7 @@ namespace IspApi\Func;
  * Class AbstractFunc
  * @package IspApi\Func
  */
-class AbstractFunc implements FuncInterface
+abstract class AbstractFunc implements FuncInterface
 {
     /**
      * @var bool
@@ -34,20 +34,6 @@ class AbstractFunc implements FuncInterface
     protected $additional = [];
 
     /**
-     * @param array $additional
-     * @return self
-     */
-    public function setAdditional(array $additional): self
-    {
-        if (empty($this->additional)) {
-            $this->additional = $additional;
-            return $this;
-        }
-        $this->additional = \array_merge($this->additional, $additional);
-        return $this;
-    }
-
-    /**
      * Domain constructor.
      * @param string $elid
      * @param string $plid
@@ -63,9 +49,23 @@ class AbstractFunc implements FuncInterface
     }
 
     /**
+     * @param array $additional
+     * @return self
+     */
+    public function setAdditional(array $additional): self
+    {
+        if (empty($this->additional)) {
+            $this->additional = $additional;
+            return $this;
+        }
+        $this->additional = \array_merge($this->additional, $additional);
+        return $this;
+    }
+
+    /**
      * @return string
      */
-    public function getFunc(): string
+    final public function getFunc(): string
     {
         return $this->func;
     }
@@ -73,7 +73,7 @@ class AbstractFunc implements FuncInterface
     /**
      * @return string
      */
-    public function getElid(): string
+    final public function getElid(): string
     {
         return $this->elid;
     }
@@ -81,7 +81,7 @@ class AbstractFunc implements FuncInterface
     /**
      * @return string
      */
-    public function getPlid(): string
+    final public function getPlid(): string
     {
         return $this->plid;
     }
@@ -89,7 +89,7 @@ class AbstractFunc implements FuncInterface
     /**
      * @return bool
      */
-    public function isSaveAction(): bool
+    final public function isSaveAction(): bool
     {
         return $this->isSaveAction;
     }
@@ -97,7 +97,7 @@ class AbstractFunc implements FuncInterface
     /**
      * @return array
      */
-    public function getAdditional(): array
+    final public function getAdditional(): array
     {
         return $this->additional;
     }
