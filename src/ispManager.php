@@ -98,10 +98,10 @@ class ispManager
     }
 
     /**
-     * @return string
+     * @return array
      * @throws \Exception
      */
-    public function execute(): string
+    public function execute(): array
     {
         $param = $this->prepareParams();
 
@@ -111,9 +111,10 @@ class ispManager
             while ($data = \fread($connection, 4096)) {
                 $response .= $data;
             }
-                \fclose($connection);
+            \fclose($connection);
+            $response = \json_decode($response, true);
         } catch (\Exception $exception) {
-            $response = \json_encode(['success' => false, 'message' => 'something went wrong']);
+            $response = [];
         }
         return $response;
     }
