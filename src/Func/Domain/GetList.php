@@ -1,6 +1,8 @@
 <?php
 
-namespace IspApi\Func;
+namespace IspApi\Func\Domain;
+
+use IspApi\Func\AbstractFunc;
 
 /**
  * Class DomainList
