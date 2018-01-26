@@ -6,7 +6,7 @@ namespace IspApi\Func;
  * Class DomainSublist
  * @package IspApi\Func
  */
-class DomainAdd extends AbstractFunc
+class Add extends AbstractFunc
 {
     /**
      * @var string

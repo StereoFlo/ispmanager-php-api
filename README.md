@@ -17,18 +17,18 @@ $credentials = new \IspApi\User\User('user', 'password');
 
 ###### Подготовка к получению списка доменов
 ```php
-$getDomainList = new \IspApi\Func\Domain();
+$getDomainList = new \IspApi\Func\Domain\GetList();
 ```
 
 ###### Подготовка к удалению домена
 ```php
-$deleteDomain = new \IspApi\Func\DomainDelete('domain.ru');
+$deleteDomain = new \IspApi\Func\Domain\Delete('domain.ru');
 ```
 
 ###### Подготовка к добавлению домена
 
 ```php
-$addDomain = new \IspApi\Func\DomainAdd();
+$addDomain = new \IspApi\Func\Domain\Add();
 $addDomain->setAdditional([
     'name'    => 'domain.ru',
     'ip'      => '127.0.0.1',
@@ -43,17 +43,17 @@ $addDomain->setAdditional([
 
 ###### Подготовка к получению списка записей по выбранному домену
 ```php
-$listEntriesByDomain = new \IspApi\Func\DomainSublist('domain.ru');
+$listEntriesByDomain = new \IspApi\Func\Domain\Record\GetList('domain.ru');
 ```
 
 ###### Подготовка к удалению выбранной записи домена
 ```php
-$deleteDomainEntry = new \IspApi\Func\DomainDeleteItem('test A  127.0.0.1', 'domain.ru');
+$deleteDomainEntry = new \IspApi\Func\Domain\Record\Delete('test A  127.0.0.1', 'domain.ru');
 ```
 
 ###### Подготовка к добавлению записи в домен 
 ```php
-$addItemToDomain = new \IspApi\Func\DomainAddItem('', 'domain.ru');
+$addItemToDomain = new \IspApi\Func\Domain\Record\Add('', 'domain.ru');
 $addItemToDomain->setAdditional([
     'name' => 'test1',
     'sdtype' => 'A',
@@ -68,12 +68,12 @@ $addItemToDomain->setAdditional([
 
 ###### Подготовка к получению SOA записи
 ```php
-$getSoaRecord = new \IspApi\Func\DomainSoa('domain.ru');
+$getSoaRecord = new \IspApi\Func\Domain\Soa\GetSoa('domain.ru');
 ```
 
 ###### Подготовка к изменению записи SOA
 ```php
-$domainSoaEdit = new \IspApi\Func\DomainSoaEdit('domain.ru');
+$domainSoaEdit = new \IspApi\Func\Domain\Soa\Edit('domain.ru');
 $domainSoaEdit->setAdditional([
     'primary' => 'dns3.domain.net.',
     'email'   => 'info@domain.net',

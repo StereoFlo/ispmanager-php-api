@@ -1,12 +1,14 @@
 <?php
 
-namespace IspApi\Func;
+namespace IspApi\Func\Domain\Record;
+
+use IspApi\Func\AbstractFunc;
 
 /**
  * Class DomainDeleteItem
  * @package IspApi\Func
  */
-class DomainDeleteItem extends AbstractFunc
+class Delete extends AbstractFunc
 {
     /**
      * @var string

@@ -6,7 +6,7 @@ namespace IspApi\Func;
  * Class DomainSublist
  * @package IspApi\Func
  */
-class DomainSublist extends AbstractFunc
+class GetList extends AbstractFunc
 {
     protected $func = 'domain.sublist';
 }

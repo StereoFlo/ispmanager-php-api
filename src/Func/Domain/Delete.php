@@ -6,7 +6,7 @@ namespace IspApi\Func;
  * Class DomainSublist
  * @package IspApi\Func
  */
-class DomainDelete extends AbstractFunc
+class Delete extends AbstractFunc
 {
     /**
      * @var string

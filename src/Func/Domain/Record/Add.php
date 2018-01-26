@@ -1,12 +1,14 @@
 <?php
 
-namespace IspApi\Func;
+namespace IspApi\Func\Domain\Record;
+
+use IspApi\Func\AbstractFunc;
 
 /**
  * Class DomainAddItem
  * @package IspApi\Func
  */
-class DomainAddItem extends AbstractFunc
+class Add extends AbstractFunc
 {
     /**
      * @var string
