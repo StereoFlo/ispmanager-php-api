@@ -6,7 +6,14 @@ An English documentation is not ready, please use Google Translator
 
 ### Использование
 
+#### Установка:
+
+```bash
+composer require stereoflo/ispmanager-php-api
+```
+
 #### Подготовка сервера и пользователя
+
 ```php
 include 'vendor/autoload.php';
 
