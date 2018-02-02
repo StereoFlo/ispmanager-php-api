@@ -19,6 +19,7 @@ include 'vendor/autoload.php';
 
 $server = new \IspApi\Server\Server('server', 1500);
 $credentials = new \IspApi\Credentials\Credentials('user', 'password');
+$client = new \IspApi\HttpClient\StreamClient(); // тут может быть любой ваш http клиент
 
 ```
 
@@ -99,7 +100,8 @@ $domainSoaEdit->setAdditional([
 ```php
 $ispManager = new IspApi\ispManager();
 $ispManager->setServer($server)
-    ->setUser($credentials);
+    ->setUser($credentials)
+    ->setClient($client);
 ```
 
 ###### Выполняем/Получаем

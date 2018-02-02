@@ -3,6 +3,7 @@
 namespace IspApi;
 
 use IspApi\Func\FuncInterface;
+use IspApi\HttpClient\HttpClientInterface;
 use IspApi\Server\ServerInterface;
 use IspApi\Credentials\CredentialsInterface;
 
@@ -21,6 +22,11 @@ class ispManager
      * @var CredentialsInterface
      */
     private $user;
+
+    /**
+     * @var HttpClientInterface
+     */
+    private $client;
 
     /**
      * @var string
@@ -68,6 +74,17 @@ class ispManager
     }
 
     /**
+     * @param HttpClientInterface $client
+     *
+     * @return ispManager
+     */
+    public function setClient(HttpClientInterface $client): self
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
      * @param string $format
      * @return ispManager
      */
@@ -103,20 +120,7 @@ class ispManager
      */
     public function execute(): array
     {
-        $param = $this->prepareParams();
-
-        try {
-            $connection = \fopen($this->url, 'rb', false, \stream_context_create($param));
-            $response = '';
-            while ($data = \fread($connection, 4096)) {
-                $response .= $data;
-            }
-            \fclose($connection);
-            $response = \json_decode($response, true);
-        } catch (\Exception $exception) {
-            $response = [];
-        }
-        return $response;
+        return $this->client->setParams($this->prepareParams())->setUrl($this->url)->get();
     }
 
     /**
