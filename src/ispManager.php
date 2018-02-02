@@ -197,7 +197,7 @@ class ispManager
                 'http' => [
                     'method'  => 'POST',
                     'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'content' => urldecode(http_build_query($this->urlParts)),
+                    'content' => \urldecode(\http_build_query($this->urlParts)),
                 ]
             ];
         }
