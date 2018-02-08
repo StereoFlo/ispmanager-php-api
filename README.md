@@ -109,9 +109,9 @@ $ispManager->setServer($server)
 ```php
 try {
     $result = $ispManager->setFunc($domainSoaEdit)->execute();
-    //so something
+    //do something
 } catch (\Exception $exception) {
     var_dump($exception);
-    //so something
+    //do something
 }
 ```
