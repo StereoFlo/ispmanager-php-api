@@ -105,7 +105,7 @@ $ispManager->setServer($server)
 ```
 
 ###### Выполняем/Получаем
-Обратите внимение, что setFunc это установка заранее подготовленного действия.
+Обратите внимание, что setFunc это установка заранее подготовленного действия.
 ```php
 try {
     $result = $ispManager->setFunc($domainSoaEdit)->execute();
