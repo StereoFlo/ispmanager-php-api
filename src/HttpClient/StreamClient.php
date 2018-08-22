@@ -9,32 +9,16 @@ namespace IspApi\HttpClient;
 class StreamClient implements HttpClientInterface
 {
     /**
-     * @var string
+     * @var HttpClientParams
      */
-    private $url = '';
+    private $params;
 
     /**
-     * @var array
-     */
-    private $params = [];
-
-    /**
-     * @param string $url
+     * @param HttpClientParams $params
      *
      * @return StreamClient
      */
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    /**
-     * @param array $params
-     *
-     * @return StreamClient
-     */
-    public function setParams(array $params): self
+    public function setParams(HttpClientParams $params): self
     {
         $this->params = $params;
         return $this;
@@ -46,7 +30,7 @@ class StreamClient implements HttpClientInterface
     public function get(): array
     {
         try {
-            $connection = \fopen($this->url, 'rb', false, \stream_context_create($this->params));
+            $connection = \fopen($this->params->getUrl(), 'rb', false, \stream_context_create($this->prepareParams()));
             $response = '';
             while ($data = \fread($connection, 4096)) {
                 $response .= $data;
@@ -57,5 +41,28 @@ class StreamClient implements HttpClientInterface
             $response = [];
         }
         return $response;
+    }
+
+    /**
+     * @return array
+     */
+    private function prepareParams(): array
+    {
+        $header = $this->params->getHeader();
+        if ($this->params->getMethod() === HttpClientParams::HTTP_METHOD_POST) {
+            return [
+                'http' => [
+                    'method'  => $this->params->getMethod(),
+                    'header'  => $header[0],
+                    'content' => $this->params->getContent(),
+                ]
+            ];
+        }
+        return [
+            'http' => [
+                'method' => $this->params->getMethod(),
+                'header' => $header[0],
+            ],
+        ];
     }
 }

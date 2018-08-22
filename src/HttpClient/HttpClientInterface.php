@@ -9,18 +9,11 @@ namespace IspApi\HttpClient;
 interface HttpClientInterface
 {
     /**
-     * @param array $params
+     * @param HttpClientParams $params
      *
      * @return self
      */
-    public function setParams(array $params);
-
-    /**
-     * @param string $url
-     *
-     * @return self
-     */
-    public function setUrl(string $url);
+    public function setParams(HttpClientParams $params);
 
     /**
      * @return array

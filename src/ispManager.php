@@ -4,6 +4,7 @@ namespace IspApi;
 
 use IspApi\Func\FuncInterface;
 use IspApi\HttpClient\HttpClientInterface;
+use IspApi\HttpClient\HttpClientParams;
 use IspApi\Server\ServerInterface;
 use IspApi\Credentials\CredentialsInterface;
 
@@ -21,12 +22,12 @@ class ispManager
     /**
      * @var CredentialsInterface
      */
-    private $user;
+    private $credentials;
 
     /**
      * @var HttpClientInterface
      */
-    private $client;
+    private $httpClient;
 
     /**
      * @var string
@@ -64,23 +65,24 @@ class ispManager
     }
 
     /**
-     * @param CredentialsInterface $user
+     * @param CredentialsInterface $credentials
+     *
      * @return ispManager
      */
-    public function setUser(CredentialsInterface $user): self
+    public function setCredentials(CredentialsInterface $credentials): self
     {
-        $this->user = $user;
+        $this->credentials = $credentials;
         return $this;
     }
 
     /**
-     * @param HttpClientInterface $client
+     * @param HttpClientInterface $httpClient
      *
      * @return ispManager
      */
-    public function setClient(HttpClientInterface $client): self
+    public function setHttpClient(HttpClientInterface $httpClient): self
     {
-        $this->client = $client;
+        $this->httpClient = $httpClient;
         return $this;
     }
 
@@ -120,7 +122,7 @@ class ispManager
      */
     public function execute(): array
     {
-        return $this->client->setParams($this->prepareParams())->setUrl($this->url)->get();
+        return $this->httpClient->setParams($this->getHttpClientParams())->get();
     }
 
     /**
@@ -155,7 +157,7 @@ class ispManager
      */
     private function prepareUrlUser(): self
     {
-        $this->urlParts['authinfo'] = $this->user->getLogin() . ':' . $this->user->getPassword();
+        $this->urlParts['authinfo'] = $this->credentials->getLogin() . ':' . $this->credentials->getPassword();
         return $this;
     }
 
@@ -184,29 +186,18 @@ class ispManager
     }
 
     /**
-     * @return array
+     * @return HttpClientParams
      */
-    private function prepareParams(): array
+    public function getHttpClientParams(): HttpClientParams
     {
         $this->buildUrl();
-        if ($this->func->isSaveAction()) {
-            if (!empty($this->func->getAdditional())) {
-                $this->urlParts = array_merge($this->urlParts, $this->func->getAdditional());
-            }
-            return [
-                'http' => [
-                    'method'  => 'POST',
-                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                    'content' => \urldecode(\http_build_query($this->urlParts)),
-                ]
-            ];
+        $method = $this->func->isSaveAction() ? HttpClientParams::HTTP_METHOD_POST : HttpClientParams::HTTP_METHOD_GET;
+        $content = null;
+        if ($this->func->getAdditional()) {
+            $content = \urldecode(\http_build_query(array_merge($this->urlParts, $this->func->getAdditional())));
         }
-        return [
-            'http' => [
-                'method' => 'GET',
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-            ],
-        ];
+        $header = ["Content-type: application/x-www-form-urlencoded\r\n"];
+        return new HttpClientParams($this->url, $method, $header, $content);
     }
 
 }
