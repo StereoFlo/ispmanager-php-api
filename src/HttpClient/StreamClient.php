@@ -8,6 +8,8 @@ namespace IspApi\HttpClient;
  */
 class StreamClient implements HttpClientInterface
 {
+    const DEFAULT_LENGTH = 4096;
+
     /**
      * @var HttpClientParams
      */
@@ -32,7 +34,7 @@ class StreamClient implements HttpClientInterface
         try {
             $connection = \fopen($this->params->getUrl(), 'rb', false, \stream_context_create($this->prepareParams()));
             $response = '';
-            while ($data = \fread($connection, 4096)) {
+            while ($data = \fread($connection, self::DEFAULT_LENGTH)) {
                 $response .= $data;
             }
             \fclose($connection);
@@ -54,7 +56,7 @@ class StreamClient implements HttpClientInterface
                 'http' => [
                     'method'  => $this->params->getMethod(),
                     'header'  => $header[0],
-                    'content' => $this->params->getContent(),
+                    'content' => \urldecode(\http_build_query($this->params->getContent())),
                 ]
             ];
         }

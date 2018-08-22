@@ -194,7 +194,7 @@ class ispManager
         $method = $this->func->isSaveAction() ? HttpClientParams::HTTP_METHOD_POST : HttpClientParams::HTTP_METHOD_GET;
         $content = null;
         if ($this->func->getAdditional()) {
-            $content = \urldecode(\http_build_query(array_merge($this->urlParts, $this->func->getAdditional())));
+            $content = array_merge($this->urlParts, $this->func->getAdditional());
         }
         $header = ["Content-type: application/x-www-form-urlencoded\r\n"];
         return new HttpClientParams($this->url, $method, $header, $content);

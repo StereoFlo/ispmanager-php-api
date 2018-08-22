@@ -27,7 +27,7 @@ class HttpClientParams
     private $header;
 
     /**
-     * @var null|string
+     * @var null|array
      */
     private $content;
 
@@ -37,9 +37,9 @@ class HttpClientParams
      * @param string      $url
      * @param string      $method
      * @param array       $header
-     * @param null|string $content
+     * @param null|array  $content
      */
-    public function __construct(string $url, string $method = self::HTTP_METHOD_GET, array $header, ?string $content)
+    public function __construct(string $url, string $method = self::HTTP_METHOD_GET, array $header, ?array $content)
     {
         $this->url     = $url;
         $this->method  = $method;
@@ -72,9 +72,9 @@ class HttpClientParams
     }
 
     /**
-     * @return null|string
+     * @return null|array
      */
-    public function getContent(): ?string
+    public function getContent(): ?array
     {
         return $this->content;
     }
