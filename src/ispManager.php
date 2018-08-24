@@ -135,7 +135,19 @@ class ispManager
         $this->prepareUrlUser();
         $this->prepareUrlFormat();
         $this->prepareUrlFunc();
+        $this->prepareUrlAdditional();
         $this->url .= \http_build_query($this->urlParts);
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
+    private function prepareUrlAdditional(): self
+    {
+        if ($this->func->getAdditional()) {
+            $this->urlParts = array_merge($this->urlParts, $this->func->getAdditional());
+        }
         return $this;
     }
 
@@ -192,12 +204,9 @@ class ispManager
     {
         $this->buildUrl();
         $method = $this->func->isSaveAction() ? HttpClientParams::HTTP_METHOD_POST : HttpClientParams::HTTP_METHOD_GET;
-        $content = null;
-        if ($this->func->getAdditional()) {
-            $content = array_merge($this->urlParts, $this->func->getAdditional());
-        }
+        $content = null; //todo: Доделать...
+
         $header = ["Content-type: application/x-www-form-urlencoded\r\n"];
         return new HttpClientParams($this->url, $method, $header, $content);
     }
-
 }
