@@ -2,6 +2,7 @@
 
 namespace IspApi;
 
+use IspApi\Format\FormatInterface;
 use IspApi\Func\FuncInterface;
 use IspApi\HttpClient\HttpClientInterface;
 use IspApi\HttpClient\HttpClientParams;
@@ -30,9 +31,9 @@ class ispManager
     private $httpClient;
 
     /**
-     * @var string
+     * @var FormatInterface
      */
-    private $format = 'json';
+    private $format;
 
     /**
      * @var FuncInterface
@@ -87,10 +88,11 @@ class ispManager
     }
 
     /**
-     * @param string $format
+     * @param FormatInterface $format
+     *
      * @return ispManager
      */
-    public function setFormat(string $format): self
+    public function setFormat(FormatInterface $format): self
     {
         $this->format = $format;
         return $this;
@@ -117,12 +119,13 @@ class ispManager
     }
 
     /**
-     * @return array
+     * @return mixed
      * @throws \Exception
      */
-    public function execute(): array
+    public function execute()
     {
-        return $this->httpClient->setParams($this->getHttpClientParams())->get();
+        $data = $this->httpClient->setParams($this->getHttpClientParams())->get();
+        return $this->format->setData($data)->getOut();
     }
 
     /**
@@ -178,7 +181,7 @@ class ispManager
      */
     private function prepareUrlFormat(): self
     {
-        $this->urlParts['out'] = $this->format;
+        $this->urlParts['out'] = $this->format->getFormat();
         return $this;
     }
 

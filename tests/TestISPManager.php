@@ -9,6 +9,8 @@
 namespace App\Tests;
 
 use IspApi\Credentials\Credentials;
+use IspApi\Format\HtmlFormat;
+use IspApi\Format\JsonFormat;
 use IspApi\HttpClient\CurlClient;
 use IspApi\ispManager;
 use IspApi\Server\Server;
@@ -38,7 +40,8 @@ class TestISPManager extends TestCase
         $this->ispManager = (new ispManager())
             ->setServer($this->server)
             ->setCredentials($this->credentials)
-            ->setHttpClient($this->client);
+            ->setHttpClient($this->client)
+            ->setFormat(new JsonFormat());
     }
 
     public function testCreateUser()
@@ -271,6 +274,21 @@ class TestISPManager extends TestCase
         $this->assertEquals(isset($result['doc']['ok']), true);
     }
 
+    public function testDumpDb()
+    {
+        $this->ispManager->setFormat(new HtmlFormat());
+        $dumpDb = new \IspApi\Func\Db\Dump('testdb->mysql-5.7');
+
+        try {
+            $result = $this->ispManager->setFunc($dumpDb)->execute();
+            $this->ispManager->setFormat(new JsonFormat());
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
+
+        $this->assertRegExp('/MySQL/', $result);
+    }
+
     public function testDeleteDb()
     {
         $deleteDb = new \IspApi\Func\Db\Delete('testdb->mysql-5.7');
@@ -281,12 +299,7 @@ class TestISPManager extends TestCase
             var_dump($e->getMessage());
         }
 
-        $message = '';
-        if (isset($result['doc']['error'])) {
-            $message = join($result['doc']['error']['msg']);
-        }
-
-        $this->assertEquals(isset($result['doc']['error']), false, $message);
+        $this->assertEquals(isset($result['doc']['error']), false);
         $this->assertEquals(isset($result['doc']['ok']), true);
     }
 

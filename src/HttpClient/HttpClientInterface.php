@@ -16,7 +16,7 @@ interface HttpClientInterface
     public function setParams(HttpClientParams $params);
 
     /**
-     * @return array
+     * @return mixed
      */
     public function get();
 }

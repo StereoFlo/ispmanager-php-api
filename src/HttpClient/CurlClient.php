@@ -25,9 +25,9 @@ class CurlClient implements HttpClientInterface
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function get(): array
+    public function get()
     {
         $ch = \curl_init();
         \curl_setopt($ch, CURLOPT_URL, $this->params->getUrl());
@@ -41,7 +41,6 @@ class CurlClient implements HttpClientInterface
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->params->getHeader());
         $response = \curl_exec($ch);
         curl_close($ch);
-        $response = \json_decode($response, true);
         return $response;
     }
 }
