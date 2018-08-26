@@ -2,7 +2,6 @@
 
 namespace IspApi\Server;
 
-
 class Server implements ServerInterface
 {
     const SCHEMA_HTTP = 'http';

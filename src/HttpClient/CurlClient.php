@@ -25,20 +25,22 @@ class CurlClient implements HttpClientInterface
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function get(): array
+    public function get()
     {
         $ch = \curl_init();
-        \curl_setopt($ch,CURLOPT_URL, $this->params->getUrl());
+        \curl_setopt($ch, CURLOPT_URL, $this->params->getUrl());
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         if ($this->params->getMethod() === HttpClientParams::HTTP_METHOD_POST) {
-            \curl_setopt($ch,CURLOPT_POST, \count($this->params->getContent()));
+            \curl_setopt($ch, CURLOPT_POST, true);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, \urldecode(\http_build_query($this->params->getContent())));
         }
-        \curl_setopt($ch,CURLOPT_POSTFIELDS, \urldecode(\http_build_query($this->params->getContent())));
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->params->getHeader());
         $response = \curl_exec($ch);
         curl_close($ch);
-        $response = \json_decode($response, true);
         return $response;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace IspApi;
 
+use IspApi\Format\FormatInterface;
 use IspApi\Func\FuncInterface;
 use IspApi\HttpClient\HttpClientInterface;
 use IspApi\HttpClient\HttpClientParams;
@@ -30,9 +31,9 @@ class ispManager
     private $httpClient;
 
     /**
-     * @var string
+     * @var FormatInterface
      */
-    private $format = 'json';
+    private $format;
 
     /**
      * @var FuncInterface
@@ -87,10 +88,11 @@ class ispManager
     }
 
     /**
-     * @param string $format
+     * @param FormatInterface $format
+     *
      * @return ispManager
      */
-    public function setFormat(string $format): self
+    public function setFormat(FormatInterface $format): self
     {
         $this->format = $format;
         return $this;
@@ -117,12 +119,13 @@ class ispManager
     }
 
     /**
-     * @return array
+     * @return mixed
      * @throws \Exception
      */
-    public function execute(): array
+    public function execute()
     {
-        return $this->httpClient->setParams($this->getHttpClientParams())->get();
+        $data = $this->httpClient->setParams($this->getHttpClientParams())->get();
+        return $this->format->setData($data)->getOut();
     }
 
     /**
@@ -135,7 +138,19 @@ class ispManager
         $this->prepareUrlUser();
         $this->prepareUrlFormat();
         $this->prepareUrlFunc();
+        $this->prepareUrlAdditional();
         $this->url .= \http_build_query($this->urlParts);
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
+    private function prepareUrlAdditional(): self
+    {
+        if ($this->func->getAdditional()) {
+            $this->urlParts = array_merge($this->urlParts, $this->func->getAdditional());
+        }
         return $this;
     }
 
@@ -166,7 +181,7 @@ class ispManager
      */
     private function prepareUrlFormat(): self
     {
-        $this->urlParts['out'] = $this->format;
+        $this->urlParts['out'] = $this->format->getFormat();
         return $this;
     }
 
@@ -192,12 +207,9 @@ class ispManager
     {
         $this->buildUrl();
         $method = $this->func->isSaveAction() ? HttpClientParams::HTTP_METHOD_POST : HttpClientParams::HTTP_METHOD_GET;
-        $content = null;
-        if ($this->func->getAdditional()) {
-            $content = array_merge($this->urlParts, $this->func->getAdditional());
-        }
+        $content = null; //todo: Доделать...
+
         $header = ["Content-type: application/x-www-form-urlencoded\r\n"];
         return new HttpClientParams($this->url, $method, $header, $content);
     }
-
 }

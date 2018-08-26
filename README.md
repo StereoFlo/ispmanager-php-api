@@ -19,7 +19,8 @@ include 'vendor/autoload.php';
 
 $server = new \IspApi\Server\Server('server', 1500);
 $credentials = new \IspApi\Credentials\Credentials('user', 'password');
-$client = new \IspApi\HttpClient\StreamClient(); // тут может быть любой ваш http клиент
+$format = new \IspApi\Format\JsonFormat();
+$client = new \IspApi\HttpClient\CurlClient(); // тут может быть любой ваш http клиент
 
 ```
 
@@ -100,8 +101,9 @@ $domainSoaEdit->setAdditional([
 ```php
 $ispManager = new IspApi\ispManager();
 $ispManager->setServer($server)
-    ->setUser($credentials)
-    ->setClient($client);
+    ->setCredentials($credentials)
+    ->setHttpClient($client)
+    ->setFormat($format);
 ```
 
 ###### Выполняем/Получаем
