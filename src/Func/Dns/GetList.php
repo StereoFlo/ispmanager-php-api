@@ -1,6 +1,6 @@
 <?php
 
-namespace IspApi\Func\Domain;
+namespace IspApi\Func\Dns;
 
 use IspApi\Func\AbstractFunc;
 
