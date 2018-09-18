@@ -100,8 +100,9 @@ $domainSoaEdit->setAdditional([
 ###### Создаем все необходимое для дальнейшего использования
 ```php
 $ispManager = new IspApi\ispManager();
-$ispManager->setServer($server)
+$response = $ispManager->setServer($server)
     ->setCredentials($credentials)
+    ->setFunc($getDomainList)
     ->setHttpClient($client)
     ->setFormat($format);
 ```
