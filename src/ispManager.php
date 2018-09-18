@@ -147,7 +147,7 @@ class ispManager
         $this->prepareUrlFormat();
         $this->prepareUrlFunc();
         $this->prepareUrlAdditional();
-        $this->url .= \http_build_query($this->urlParts);
+        $this->url .= \http_build_query($this->urlParts->toArray());
         return $this;
     }
 
