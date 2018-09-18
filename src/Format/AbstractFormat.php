@@ -1,17 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dmitry
- * Date: 25.08.18
- * Time: 20:56
- */
 
 namespace IspApi\Format;
 
+/**
+ * Class AbstractFormat
+ * @package IspApi\Format
+ */
 abstract class AbstractFormat implements FormatInterface
 {
+    /**
+     * @var string
+     */
     protected $format;
 
+    /**
+     * @var mixed
+     */
     protected $data;
 
     /**

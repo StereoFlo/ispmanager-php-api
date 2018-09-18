@@ -1,15 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dmitry
- * Date: 25.08.18
- * Time: 20:46
- */
 
 namespace IspApi\Format;
 
+/**
+ * Class JsonFormat
+ * @package IspApi\Format
+ */
 class JsonFormat extends AbstractFormat
 {
+    /**
+     * @var string
+     */
     protected $format = 'json';
 
     /**

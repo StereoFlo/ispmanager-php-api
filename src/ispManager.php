@@ -46,14 +46,22 @@ class ispManager
     private $url;
 
     /**
-     * @var array
+     * @var UrlParts
      */
-    private $urlParts = [];
+    private $urlParts;
 
     /**
      * @var
      */
     private $data;
+
+    /**
+     * ispManager constructor.
+     */
+    public function __construct()
+    {
+        $this->urlParts = new UrlParts();
+    }
 
     /**
      * @param ServerInterface $server
@@ -149,7 +157,7 @@ class ispManager
     private function prepareUrlAdditional(): self
     {
         if ($this->func->getAdditional()) {
-            $this->urlParts = array_merge($this->urlParts, $this->func->getAdditional());
+            $this->urlParts = array_merge($this->urlParts->toArray(), $this->func->getAdditional());
         }
         return $this;
     }
@@ -172,7 +180,7 @@ class ispManager
      */
     private function prepareUrlUser(): self
     {
-        $this->urlParts['authinfo'] = $this->credentials->getLogin() . ':' . $this->credentials->getPassword();
+        $this->urlParts->setAuthinfo($this->credentials->getLogin() . ':' . $this->credentials->getPassword());
         return $this;
     }
 
@@ -181,7 +189,7 @@ class ispManager
      */
     private function prepareUrlFormat(): self
     {
-        $this->urlParts['out'] = $this->format->getFormat();
+        $this->urlParts->setOut($this->format->getFormat());
         return $this;
     }
 
@@ -190,12 +198,12 @@ class ispManager
      */
     private function prepareUrlFunc(): self
     {
-        $this->urlParts['func'] = $this->func->getFunc();
+        $this->urlParts->setFunc($this->func->getFunc());
         if ($this->func->getElid()) {
-            $this->urlParts['elid'] = $this->func->getElid();
+            $this->urlParts->setElid($this->func->getElid());
         }
         if ($this->func->getPlid()) {
-            $this->urlParts['plid'] = $this->func->getPlid();
+            $this->urlParts->setPlid($this->func->getPlid());
         }
         return $this;
     }

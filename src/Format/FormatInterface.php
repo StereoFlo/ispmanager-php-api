@@ -1,13 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dmitry
- * Date: 25.08.18
- * Time: 20:50
- */
 
 namespace IspApi\Format;
 
+/**
+ * Interface FormatInterface
+ * @package IspApi\Format
+ */
 interface FormatInterface
 {
     /**
