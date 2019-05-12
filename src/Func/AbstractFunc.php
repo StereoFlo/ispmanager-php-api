@@ -2,6 +2,8 @@
 
 namespace IspApi\Func;
 
+use function array_merge;
+
 /**
  * Class AbstractFunc
  * @package IspApi\Func
@@ -16,17 +18,17 @@ abstract class AbstractFunc implements FuncInterface
     /**
      * @var string
      */
-    protected $func = '';
+    protected $func;
 
     /**
      * @var string
      */
-    protected $elid = '';
+    protected $elid;
 
     /**
      * @var string
      */
-    protected $plid = '';
+    protected $plid;
 
     /**
      * @var array
@@ -38,7 +40,7 @@ abstract class AbstractFunc implements FuncInterface
      * @param string $elid
      * @param string $plid
      */
-    public function __construct(string $elid = '', string $plid = '')
+    public function __construct(string $elid = null, string $plid = null)
     {
         if ($elid) {
             $this->elid = $elid;
@@ -58,30 +60,30 @@ abstract class AbstractFunc implements FuncInterface
             $this->additional = $additional;
             return $this;
         }
-        $this->additional = \array_merge($this->additional, $additional);
+        $this->additional = array_merge($this->additional, $additional);
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    final public function getFunc(): string
+    final public function getFunc(): ?string
     {
         return $this->func;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    final public function getElid(): string
+    final public function getElid(): ?string
     {
         return $this->elid;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    final public function getPlid(): string
+    final public function getPlid(): ?string
     {
         return $this->plid;
     }
@@ -89,7 +91,7 @@ abstract class AbstractFunc implements FuncInterface
     /**
      * @return bool
      */
-    final public function isSaveAction(): bool
+    final public function getIsSaveAction(): bool
     {
         return $this->isSaveAction;
     }

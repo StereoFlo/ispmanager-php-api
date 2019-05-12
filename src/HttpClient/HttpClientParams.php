@@ -39,7 +39,7 @@ class HttpClientParams
      * @param array       $header
      * @param null|array  $content
      */
-    public function __construct(string $url, string $method = self::HTTP_METHOD_GET, array $header, ?array $content)
+    public function __construct(string $url, string $method = self::HTTP_METHOD_GET, array $header, ?array $content = null)
     {
         $this->url     = $url;
         $this->method  = $method;

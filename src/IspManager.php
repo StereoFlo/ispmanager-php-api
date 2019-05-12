@@ -2,6 +2,8 @@
 
 namespace IspApi;
 
+use Exception;
+use function http_build_query;
 use IspApi\Format\FormatInterface;
 use IspApi\Func\FuncInterface;
 use IspApi\HttpClient\HttpClientInterface;
@@ -15,6 +17,8 @@ use IspApi\Credentials\CredentialsInterface;
  */
 class ispManager
 {
+    const DEFAULT_HEADER = ["Content-type: application/x-www-form-urlencoded\r\n"];
+
     /**
      * @var ServerInterface
      */
@@ -128,12 +132,24 @@ class ispManager
 
     /**
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function execute()
     {
         $data = $this->httpClient->setParams($this->getHttpClientParams())->get();
         return $this->format->setData($data)->getOut();
+    }
+
+    /**
+     * @return HttpClientParams
+     */
+    public function getHttpClientParams(): HttpClientParams
+    {
+        $this->buildUrl();
+        $method = $this->func->getIsSaveAction() ? HttpClientParams::HTTP_METHOD_POST : HttpClientParams::HTTP_METHOD_GET;
+
+        $header = self::DEFAULT_HEADER;
+        return new HttpClientParams($this->url, $method, $header);
     }
 
     /**
@@ -147,7 +163,7 @@ class ispManager
         $this->prepareUrlFormat();
         $this->prepareUrlFunc();
         $this->prepareUrlAdditional();
-        $this->url .= \http_build_query($this->urlParts->toArray());
+        $this->url .= http_build_query($this->urlParts->toArray());
         return $this;
     }
 
@@ -206,18 +222,5 @@ class ispManager
             $this->urlParts->setPlid($this->func->getPlid());
         }
         return $this;
-    }
-
-    /**
-     * @return HttpClientParams
-     */
-    public function getHttpClientParams(): HttpClientParams
-    {
-        $this->buildUrl();
-        $method = $this->func->isSaveAction() ? HttpClientParams::HTTP_METHOD_POST : HttpClientParams::HTTP_METHOD_GET;
-        $content = null; //todo: Доделать...
-
-        $header = ["Content-type: application/x-www-form-urlencoded\r\n"];
-        return new HttpClientParams($this->url, $method, $header, $content);
     }
 }

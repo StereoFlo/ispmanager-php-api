@@ -11,21 +11,21 @@ interface FuncInterface
     /**
      * @return string
      */
-    public function getFunc(): string ;
+    public function getFunc(): ?string ;
     /**
      * @return string
      */
-    public function getElid(): string ;
+    public function getElid(): ?string ;
 
     /**
      * @return string
      */
-    public function getPlid(): string ;
+    public function getPlid(): ?string ;
 
     /**
      * @return bool
      */
-    public function isSaveAction(): bool ;
+    public function getIsSaveAction(): bool ;
 
     /**
      * @return array
