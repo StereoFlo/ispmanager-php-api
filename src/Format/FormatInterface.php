@@ -8,7 +8,7 @@ interface FormatInterface
 {
     public function getFormat(): string;
 
-    public function setData($data): self;
+    public function setData(string $data): self;
 
     public function getResult(): array;
 }

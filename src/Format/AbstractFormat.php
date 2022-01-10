@@ -14,7 +14,7 @@ abstract class AbstractFormat implements FormatInterface
         return $this->format;
     }
 
-    public function setData($data): FormatInterface
+    public function setData(string $data): FormatInterface
     {
         $this->data = $data;
 
