@@ -8,7 +8,7 @@ use function json_decode;
 
 class JsonFormat extends AbstractFormat
 {
-    protected $format = 'json';
+    protected string $format = 'json';
 
     public function getResult(): array
     {

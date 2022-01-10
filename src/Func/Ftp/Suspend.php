@@ -14,7 +14,7 @@ use IspApi\Func\AbstractFunc;
 
 class Suspend extends AbstractFunc
 {
-    protected $func = 'ftp.user.suspend';
+    protected string $func = 'ftp.user.suspend';
 
     /**
      * Edit constructor.

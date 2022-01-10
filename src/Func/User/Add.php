@@ -6,25 +6,16 @@ namespace IspApi\Func\User;
 
 use IspApi\Func\AbstractFunc;
 
-/**
- * Class UserAdd.
- */
 class Add extends AbstractFunc
 {
-    protected $func = 'user.add';
+    protected string $func = 'user.add';
 
-    /**
-     * Add constructor.
-     */
     public function __construct()
     {
-        $this->additional['sok'] = 'ok';
         parent::__construct();
+        $this->additional['sok'] = 'ok';
     }
 
-    /**
-     * @return Add
-     */
     public function setName(string $name): self
     {
         $this->additional['name'] = $name;
@@ -32,9 +23,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setPassword(string $password): self
     {
         $this->additional['passwd']  = $password;
@@ -43,9 +31,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setPreset(string $preset): self
     {
         $this->additional['preset'] = $preset;
@@ -53,9 +38,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setAddInfo(string $addInfo): self
     {
         $this->additional['addinfo'] = $addInfo;
@@ -63,9 +45,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setFullName(string $fullName): self
     {
         $this->additional['fullname'] = $fullName;
@@ -73,9 +52,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setOwner(string $owner): self
     {
         $this->additional['owner'] = $owner;
@@ -83,9 +59,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setComment(string $comment): self
     {
         $this->additional['comment'] = $comment;
@@ -93,9 +66,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setStatus(string $status): self
     {
         $this->additional['status'] = $status;
@@ -103,9 +73,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setQuota(string $quota): self
     {
         $this->additional['quota'] = $quota;
@@ -113,9 +80,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setLocation(string $loc): self
     {
         $this->additional['loc'] = $loc;

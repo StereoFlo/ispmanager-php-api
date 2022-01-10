@@ -11,13 +11,6 @@ use IspApi\Func\AbstractFunc;
  */
 class Add extends AbstractFunc
 {
-    /**
-     * @var string
-     */
-    protected $func = 'domain.sublist.edit';
-
-    /**
-     * @var bool
-     */
-    protected $isSaveAction = true;
+    protected string $func       = 'domain.sublist.edit';
+    protected bool $isSaveAction = true;
 }

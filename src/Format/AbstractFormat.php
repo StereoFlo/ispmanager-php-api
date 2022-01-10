@@ -21,7 +21,7 @@ abstract class AbstractFormat implements FormatInterface
         return $this;
     }
 
-    public function getResult(): string
+    public function getResult(): array
     {
         return $this->data;
     }

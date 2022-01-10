@@ -14,7 +14,7 @@ use IspApi\Func\AbstractFunc;
 
 class Resume extends AbstractFunc
 {
-    protected $func = 'ftp.user.resume';
+    protected string $func = 'ftp.user.resume';
 
     /**
      * Edit constructor.

@@ -14,20 +14,14 @@ use IspApi\Func\AbstractFunc;
 
 class Add extends AbstractFunc
 {
-    protected $func = 'ftp.user.edit';
+    protected string $func = 'ftp.user.edit';
 
-    /**
-     * Edit constructor.
-     */
     public function __construct()
     {
         $this->additional['sok'] = 'ok';
         parent::__construct();
     }
 
-    /**
-     * @return Add
-     */
     public function setHome(string $home): self
     {
         $this->additional['home'] = $home;
@@ -35,9 +29,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setOwner(string $owner): self
     {
         $this->additional['owner'] = $owner;
@@ -45,9 +36,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setName(string $name): self
     {
         $this->additional['name'] = $name;
@@ -55,9 +43,6 @@ class Add extends AbstractFunc
         return $this;
     }
 
-    /**
-     * @return Add
-     */
     public function setPassword(string $passwd): self
     {
         $this->additional['passwd']  = $passwd;

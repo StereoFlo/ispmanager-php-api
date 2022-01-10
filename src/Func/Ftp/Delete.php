@@ -14,7 +14,7 @@ use IspApi\Func\AbstractFunc;
 
 class Delete extends AbstractFunc
 {
-    protected $func = 'ftp.user.delete';
+    protected string $func = 'ftp.user.delete';
 
     /**
      * Edit constructor.

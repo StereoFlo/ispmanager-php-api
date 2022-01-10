@@ -14,7 +14,7 @@ use IspApi\Func\AbstractFunc;
 
 class Edit extends AbstractFunc
 {
-    protected $func = 'ftp.user.edit';
+    protected string $func = 'ftp.user.edit';
 
     /**
      * Edit constructor.
