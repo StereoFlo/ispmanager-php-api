@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\Dns;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class DomainSublist
- * @package IspApi\Func
+ * Class DomainSublist.
  */
 class Delete extends AbstractFunc
 {

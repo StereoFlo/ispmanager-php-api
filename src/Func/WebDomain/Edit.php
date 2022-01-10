@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\WebDomain;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class DomainEdit
+ * Class DomainEdit.
  */
 class Edit extends AbstractFunc
 {
@@ -13,8 +15,6 @@ class Edit extends AbstractFunc
 
     /**
      * Edit constructor.
-     *
-     * @param string $domain
      */
     public function __construct(string $domain)
     {
@@ -23,35 +23,32 @@ class Edit extends AbstractFunc
     }
 
     /**
-     * @param string $email
-     *
      * @return Edit
      */
     public function setEmail(string $email): self
     {
         $this->additional['email'] = $email;
+
         return $this;
     }
 
     /**
-     * @param string $aliases
-     *
      * @return Edit
      */
     public function setAliases(string $aliases): self
     {
         $this->additional['aliases'] = $aliases;
+
         return $this;
     }
 
     /**
-     * @param string $home
-     *
      * @return Edit
      */
     public function setHome(string $home): self
     {
         $this->additional['home'] = $home;
+
         return $this;
     }
 }

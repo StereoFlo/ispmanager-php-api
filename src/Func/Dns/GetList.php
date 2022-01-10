@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\Dns;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class DomainList
+ * Class DomainList.
  */
 class GetList extends AbstractFunc
 {

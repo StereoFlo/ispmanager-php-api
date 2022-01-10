@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\User;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class UserEdit
+ * Class UserEdit.
  */
 class Edit extends AbstractFunc
 {
@@ -13,8 +15,6 @@ class Edit extends AbstractFunc
 
     /**
      * Edit constructor.
-     *
-     * @param string $name
      */
     public function __construct(string $name)
     {
@@ -23,25 +23,23 @@ class Edit extends AbstractFunc
     }
 
     /**
-     * @param string $fullName
-     *
      * @return Edit
      */
     public function setFullName(string $fullName): self
     {
         $this->additional['fullname'] = $fullName;
+
         return $this;
     }
 
     /**
-     * @param string $password
-     *
      * @return Edit
      */
     public function setPassword(string $password): self
     {
-        $this->additional['passwd'] = $password;
+        $this->additional['passwd']  = $password;
         $this->additional['confirm'] = $password;
+
         return $this;
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\User;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class UserDelete
+ * Class UserDelete.
  */
 class Delete extends AbstractFunc
 {
@@ -13,8 +15,6 @@ class Delete extends AbstractFunc
 
     /**
      * Edit constructor.
-     *
-     * @param string $name
      */
     public function __construct(string $name)
     {

@@ -1,22 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\HttpClient;
 
-/**
- * Interface HttpClientInterface
- * @package IspApi\HttpClient
- */
 interface HttpClientInterface
 {
-    /**
-     * @param HttpClientParams $params
-     *
-     * @return self
-     */
-    public function setParams(HttpClientParams $params);
+    public function setParams(HttpClientParams $params): self;
 
-    /**
-     * @return mixed
-     */
-    public function get();
+    public function get(): string;
 }

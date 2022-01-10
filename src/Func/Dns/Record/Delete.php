@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\Dns\Record;
 
 use IspApi\Func\AbstractFunc;
+use function str_replace;
 
 /**
- * Class DomainDeleteItem
- * @package IspApi\Func
+ * Class DomainDeleteItem.
  */
 class Delete extends AbstractFunc
 {
@@ -22,7 +24,7 @@ class Delete extends AbstractFunc
 
     public function __construct(string $elid = '', string $plid = '')
     {
-        $elid = \str_replace(' ', '+', $elid);
+        $elid = str_replace(' ', '+', $elid);
         parent::__construct($elid, $plid);
     }
 }

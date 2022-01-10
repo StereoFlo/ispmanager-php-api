@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\Dns\Record;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class DomainAddItem
- * @package IspApi\Func
+ * Class DomainAddItem.
  */
 class Add extends AbstractFunc
 {

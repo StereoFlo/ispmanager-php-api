@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Format;
 
 /**
- * Class HtmlFormat
- * @package IspApi\Format
+ * Class HtmlFormat.
  */
 class HtmlFormat extends AbstractFormat
 {

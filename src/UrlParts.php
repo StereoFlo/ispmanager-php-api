@@ -1,136 +1,79 @@
 <?php
 
+declare(strict_types = 1);
 
 namespace IspApi;
 
-/**
- * Class UrlParts
- * @package IspApi
- */
 class UrlParts
 {
-    /**
-     * @var string
-     */
-    private $authinfo;
+    private string $authinfo;
+    private string $out;
+    private string $func;
+    private ?string $elid;
+    private ?string $plid;
 
-    /**
-     * @var string
-     */
-    private $out;
-
-    /**
-     * @var string
-     */
-    private $func;
-
-    /**
-     * @var string|null
-     */
-    private $elid;
-
-    /**
-     * @var string|null
-     */
-    private $plid;
-
-    /**
-     * @return string
-     */
     public function getAuthinfo(): string
     {
         return $this->authinfo;
     }
 
-    /**
-     * @param string $authinfo
-     *
-     * @return UrlParts
-     */
-    public function setAuthinfo(string $authinfo): UrlParts
+    public function setAuthinfo(string $authinfo): self
     {
         $this->authinfo = $authinfo;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getOut(): string
     {
         return $this->out;
     }
 
-    /**
-     * @param string $out
-     *
-     * @return UrlParts
-     */
-    public function setOut(string $out): UrlParts
+    public function setOut(string $out): self
     {
         $this->out = $out;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getFunc(): string
     {
         return $this->func;
     }
 
-    /**
-     * @param string $func
-     *
-     * @return UrlParts
-     */
-    public function setFunc(string $func): UrlParts
+    public function setFunc(string $func): self
     {
         $this->func = $func;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getElid(): string
     {
         return $this->elid;
     }
 
-    /**
-     * @param string $elid
-     *
-     * @return UrlParts
-     */
-    public function setElid(string $elid): UrlParts
+    public function setElid(string $elid): self
     {
         $this->elid = $elid;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPlid(): string
     {
         return $this->plid;
     }
 
-    /**
-     * @param string $plid
-     *
-     * @return UrlParts
-     */
-    public function setPlid(string $plid): UrlParts
+    public function setPlid(string $plid): self
     {
         $this->plid = $plid;
+
         return $this;
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
@@ -145,6 +88,7 @@ class UrlParts
         if ($this->plid) {
             $data['plid'] = $this->plid;
         }
+
         return $data;
     }
 }

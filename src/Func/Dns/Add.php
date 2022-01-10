@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\Dns;
 
 use IspApi\Func\AbstractFunc;
+use function str_replace;
 
 /**
- * Class DomainSublist
- * @package IspApi\Func
+ * Class DomainSublist.
  */
 class Add extends AbstractFunc
 {
@@ -21,33 +23,18 @@ class Add extends AbstractFunc
     protected $isSaveAction = true;
 
     /**
-     * Format for this array:
-     *
-    [
-        'name'    => 'domain.ru',
-        'ip'      => '127.0.0.1',
-        'ns'      => 'dns3.domain.net.+dns1.domain.net.+dns2.domain.net.',
-        'ns_list' => '',
-        'mx'      => 'mail',
-        'mx_list' => '',
-        'elid'    => '',
-        'sok'     => 'ok',
-    ]
+     * Format for this array:.
      *
      * @var array
      */
     protected $additional = [];
 
-    /**
-     * @param array $additional
-     *
-     * @return AbstractFunc
-     */
     public function setAdditional(array $additional): AbstractFunc
     {
         if (isset($additional['ns'])) {
-            $additional['ns'] = \str_replace(' ', '+', $additional['ns']);
+            $additional['ns'] = str_replace(' ', '+', $additional['ns']);
         }
+
         return parent::setAdditional($additional);
     }
 }

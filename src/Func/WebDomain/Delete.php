@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func\WebDomain;
 
 use IspApi\Func\AbstractFunc;
 
 /**
- * Class WebDomainDelete
+ * Class WebDomainDelete.
  */
 class Delete extends AbstractFunc
 {
@@ -13,8 +15,6 @@ class Delete extends AbstractFunc
 
     /**
      * Delete constructor.
-     *
-     * @param string $domain
      */
     public function __construct(string $domain)
     {

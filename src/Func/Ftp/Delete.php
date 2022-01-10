@@ -1,9 +1,11 @@
 <?php
+
+declare(strict_types = 1);
 /**
  * Created by PhpStorm.
  * User: dmitry
  * Date: 25.08.18
- * Time: 3:55
+ * Time: 3:55.
  */
 
 namespace IspApi\Func\Ftp;
@@ -16,8 +18,6 @@ class Delete extends AbstractFunc
 
     /**
      * Edit constructor.
-     *
-     * @param string $name
      */
     public function __construct(string $name)
     {

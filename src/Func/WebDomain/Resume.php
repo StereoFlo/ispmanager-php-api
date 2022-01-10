@@ -1,9 +1,11 @@
 <?php
+
+declare(strict_types = 1);
 /**
  * Created by PhpStorm.
  * User: dmitry
  * Date: 25.08.18
- * Time: 4:06
+ * Time: 4:06.
  */
 
 namespace IspApi\Func\WebDomain;
@@ -16,8 +18,6 @@ class Resume extends AbstractFunc
 
     /**
      * Edit constructor.
-     *
-     * @param string $domain
      */
     public function __construct(string $domain)
     {
