@@ -7,7 +7,7 @@ namespace IspApi\Format;
 abstract class AbstractFormat implements FormatInterface
 {
     protected string $format;
-    protected $data;
+    protected string $data;
 
     public function getFormat(): string
     {
@@ -21,8 +21,8 @@ abstract class AbstractFormat implements FormatInterface
         return $this;
     }
 
-    public function getResult(): array
-    {
-        return $this->data;
-    }
+    /**
+     * @return array<mixed>
+     */
+    abstract public function getResult(): array;
 }

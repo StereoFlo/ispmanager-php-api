@@ -10,5 +10,8 @@ interface FormatInterface
 
     public function setData(string $data): self;
 
+    /**
+     * @return array<mixed>
+     */
     public function getResult(): array;
 }

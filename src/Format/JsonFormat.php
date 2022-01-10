@@ -10,6 +10,9 @@ class JsonFormat extends AbstractFormat
 {
     protected string $format = 'json';
 
+    /**
+     * @return array<mixed>
+     */
     public function getResult(): array
     {
         return json_decode($this->data, true);

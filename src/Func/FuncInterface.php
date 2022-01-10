@@ -14,5 +14,8 @@ interface FuncInterface
 
     public function getIsSaveAction(): bool;
 
+    /**
+     * @return mixed[]
+     */
     public function getAdditional(): array;
 }

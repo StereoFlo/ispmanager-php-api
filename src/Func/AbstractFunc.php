@@ -12,6 +12,10 @@ abstract class AbstractFunc implements FuncInterface
     protected string $func;
     protected string $elid;
     protected string $plid;
+
+    /**
+     * @var array<mixed>
+     */
     protected array $additional = [];
 
     public function __construct(string $elid = null, string $plid = null)
@@ -24,6 +28,11 @@ abstract class AbstractFunc implements FuncInterface
         }
     }
 
+    /**
+     * @param array<mixed> $additional
+     *
+     * @return $this
+     */
     public function setAdditional(array $additional): self
     {
         if (empty($this->additional)) {
@@ -56,6 +65,9 @@ abstract class AbstractFunc implements FuncInterface
         return $this->isSaveAction;
     }
 
+    /**
+     * @return mixed[]
+     */
     final public function getAdditional(): array
     {
         return $this->additional;
