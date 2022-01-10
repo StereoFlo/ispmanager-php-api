@@ -11,11 +11,19 @@ class HttpClientParams
 
     private string $url;
     private string $method;
-    private array $header;
-    private ?array $content;
 
     /**
-     * HttpClientParams constructor.
+     * @var array<string, mixed>
+     */
+    private array $header;
+
+    /**
+     * @var mixed[]|null
+     */
+    private ?array $content;
+    /**
+     * @param array<mixed>              $header
+     * @param array<string, mixed>|null $content
      */
     public function __construct(string $url, string $method = self::HTTP_METHOD_GET, array $header, ?array $content = null)
     {
@@ -35,11 +43,17 @@ class HttpClientParams
         return $this->method;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getHeader(): array
     {
         return $this->header;
     }
 
+    /**
+     * @return mixed[]|null
+     */
     public function getContent(): ?array
     {
         return $this->content;

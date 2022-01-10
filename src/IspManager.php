@@ -129,6 +129,7 @@ class IspManager
     private function prepareUrlAdditional(): self
     {
         if ($this->func->getAdditional()) {
+            foreach ($this->func->getAdditional() as $part)
             $this->urlParts = array_merge($this->urlParts->toArray(), $this->func->getAdditional());
         }
 
