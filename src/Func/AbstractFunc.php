@@ -64,12 +64,4 @@ abstract class AbstractFunc implements FuncInterface
     {
         return $this->isSaveAction;
     }
-
-    /**
-     * @return mixed[]
-     */
-    final public function getAdditional(): array
-    {
-        return $this->additional;
-    }
 }

@@ -21,6 +21,7 @@ class HttpClientParams
      * @var mixed[]|null
      */
     private ?array $content;
+
     /**
      * @param array<mixed>              $header
      * @param array<string, mixed>|null $content

@@ -13,9 +13,4 @@ interface FuncInterface
     public function getPlid(): ?string;
 
     public function getIsSaveAction(): bool;
-
-    /**
-     * @return mixed[]
-     */
-    public function getAdditional(): array;
 }

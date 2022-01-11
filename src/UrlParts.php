@@ -48,7 +48,7 @@ class UrlParts
         return $this;
     }
 
-    public function getElid(): string
+    public function getElid(): ?string
     {
         return $this->elid;
     }
@@ -60,7 +60,7 @@ class UrlParts
         return $this;
     }
 
-    public function getPlid(): string
+    public function getPlid(): ?string
     {
         return $this->plid;
     }

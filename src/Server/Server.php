@@ -13,7 +13,7 @@ class Server implements ServerInterface
     private string $host   = '';
     private int $port      = 0;
 
-    public function __construct(string $host, int $port = 0, $schema = self::SCHEMA_HTTPS)
+    public function __construct(string $host, int $port = 0, string $schema = self::SCHEMA_HTTPS)
     {
         $this->host = $host;
         if ($port) {

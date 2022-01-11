@@ -11,7 +11,6 @@ use IspApi\Func\FuncInterface;
 use IspApi\HttpClient\HttpClientInterface;
 use IspApi\HttpClient\HttpClientParams;
 use IspApi\Server\ServerInterface;
-use function array_merge;
 use function http_build_query;
 
 class IspManager
@@ -120,18 +119,7 @@ class IspManager
         $this->prepareUrlUser();
         $this->prepareUrlFormat();
         $this->prepareUrlFunc();
-        $this->prepareUrlAdditional();
         $this->url .= http_build_query($this->urlParts->toArray());
-
-        return $this;
-    }
-
-    private function prepareUrlAdditional(): self
-    {
-        if ($this->func->getAdditional()) {
-            foreach ($this->func->getAdditional() as $part)
-            $this->urlParts = array_merge($this->urlParts->toArray(), $this->func->getAdditional());
-        }
 
         return $this;
     }
@@ -164,12 +152,18 @@ class IspManager
 
     private function prepareUrlFunc(): self
     {
-        $this->urlParts->setFunc($this->func->getFunc());
-        if ($this->func->getElid()) {
-            $this->urlParts->setElid($this->func->getElid());
+        $func = $this->func->getFunc();
+        $elid = $this->func->getElid();
+        $plid = $this->func->getPlid();
+
+        if (null !== $func) {
+            $this->urlParts->setFunc($func);
         }
-        if ($this->func->getPlid()) {
-            $this->urlParts->setPlid($this->func->getPlid());
+        if (null !== $elid) {
+            $this->urlParts->setElid($elid);
+        }
+        if (null !== $plid) {
+            $this->urlParts->setPlid($plid);
         }
 
         return $this;
