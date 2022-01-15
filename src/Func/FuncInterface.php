@@ -1,34 +1,16 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Func;
 
-/**
- * Interface FuncInterface
- * @package IspApi\Func
- */
 interface FuncInterface
 {
-    /**
-     * @return string
-     */
-    public function getFunc(): ?string ;
-    /**
-     * @return string
-     */
-    public function getElid(): ?string ;
+    public function getFunc(): ?string;
 
-    /**
-     * @return string
-     */
-    public function getPlid(): ?string ;
+    public function getElid(): ?string;
 
-    /**
-     * @return bool
-     */
-    public function getIsSaveAction(): bool ;
+    public function getPlid(): ?string;
 
-    /**
-     * @return array
-     */
-    public function getAdditional(): array;
+    public function getIsSaveAction(): bool;
 }

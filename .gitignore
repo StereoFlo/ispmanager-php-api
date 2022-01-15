@@ -2,3 +2,4 @@ vendor
 isp.php
 .idea/
 composer.phar
+.php-cs-fixer.cache

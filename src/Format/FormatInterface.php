@@ -1,28 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\Format;
 
-/**
- * Interface FormatInterface
- * @package IspApi\Format
- */
 interface FormatInterface
 {
-    /**
-     * @return string
-     */
     public function getFormat(): string;
 
-    /**
-     * @param $data
-     *
-     * @return self
-     */
-    public function setData($data): self;
-
+    public function setData(string $data): self;
 
     /**
-     * @return mixed
+     * @return array<mixed>
      */
-    public function getOut();
+    public function getResult(): array;
 }

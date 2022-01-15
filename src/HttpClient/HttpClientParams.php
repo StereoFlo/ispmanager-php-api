@@ -1,43 +1,30 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace IspApi\HttpClient;
 
-/**
- * Class HttpClientParams
- * @package IspApi\HttpClient
- */
 class HttpClientParams
 {
-    const HTTP_METHOD_POST = 'POST';
-    const HTTP_METHOD_GET  = 'GET';
+    public const HTTP_METHOD_POST = 'POST';
+    public const HTTP_METHOD_GET  = 'GET';
+
+    private string $url;
+    private string $method;
 
     /**
-     * @var string
+     * @var array<string, mixed>
      */
-    private $url;
+    private array $header;
 
     /**
-     * @var string
+     * @var mixed[]|null
      */
-    private $method;
+    private ?array $content;
 
     /**
-     * @var array
-     */
-    private $header;
-
-    /**
-     * @var null|array
-     */
-    private $content;
-
-    /**
-     * HttpClientParams constructor.
-     *
-     * @param string      $url
-     * @param string      $method
-     * @param array       $header
-     * @param null|array  $content
+     * @param array<mixed>              $header
+     * @param array<string, mixed>|null $content
      */
     public function __construct(string $url, string $method = self::HTTP_METHOD_GET, array $header, ?array $content = null)
     {
@@ -47,24 +34,18 @@ class HttpClientParams
         $this->content = $content;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getMethod(): string
     {
         return $this->method;
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getHeader(): array
     {
@@ -72,7 +53,7 @@ class HttpClientParams
     }
 
     /**
-     * @return null|array
+     * @return mixed[]|null
      */
     public function getContent(): ?array
     {
